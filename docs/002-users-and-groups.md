@@ -93,27 +93,23 @@ The objective is to apply the principle of least privilege, ensuring that users 
 step 1: creating and check the groups
 
 ```
-
 sudo groupadd developers
 sudo groupadd support
 sudo groupadd sysadmins
-
+```
 ```
 sudo getent group developers
 sudo getent group support
 sudo getent group sysadmins
-
 ```
-
 step 2: creating and check the users
 
 ```
-
 sudo useradd -m -s /bin/bash joe
 sudo useradd -m -s /bin/bash bob
 sudo useradd -m -s /bin/bash charlie
-
 ```
+
 • -m: Short for make home. It forces the system to automatically create a personal home directory for the user inside the /home/ path (for example: /home/joe). If you omit this parameter, the user account will be created, but they won't have a dedicated space to save their files.
 
 • -s /bin/bash: Defines the default shell (the terminal environment) for the user. By specifying /bin/bash, you ensure that when they log in, they will have access to Bash, which is the standard, interactive console with auto-completion in Debian.
@@ -121,21 +117,17 @@ sudo useradd -m -s /bin/bash charlie
 step 3: We assign passwords:
 
 ```
-
 sudo passwd joe
 sudo passwd bob
 sudo passwd charlie
-
 ```
 
 step 4: add users to groups
 
 ```
-
 sudo usermod -aG developers joe
 sudo usermod -aG developers bob
 sudo usermod -aG support charlie
-
 ```
 
 • -a: Stands for append. This is a crucial option because it tells the system to add the user to the new group while keeping them in all of their previous groups. (Warning! If you forget to include the -a, the user will be removed from all their current groups and will only belong to the new one).
@@ -145,20 +137,16 @@ sudo usermod -aG support charlie
 step 5: We checked that the users were added correctly
 
 ```
-
 groups joe
 groups bob
 groups charlie
-
 ```
 
 step 6: create an administrator
 
 ```
-
 sudo useradd -m -s /bin/bash admin01
 sudo passwd admin01
-
 ```
 
 step 7: add administrator to sudo group
@@ -166,7 +154,6 @@ step 7: add administrator to sudo group
 ```
 sudo usermod -aG sudo admin01
 groups admin01
-
 ```
  test
 
